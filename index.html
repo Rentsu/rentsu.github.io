@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Hub</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="nav-bar-logo">
+        <a
+          href="javascript:void(0)"
+          class="logo-link"
+          onclick="showPage('home', this)"
+        >
+          <img src="pic/UEP LOGO.png" width="50" height="50" />
+        </a>
+      </div>
+
+      <!-- Navigation Bar -->
+      <a
+        href="javascript:void(0)"
+        class="active"
+        onclick="showPage('home', this)"
+        >Home</a
+      >
+      <a href="javascript:void(0)" onclick="showPage('students', this)"
+        >Students</a
+      >
+      <a href="javascript:void(0)" onclick="showPage('services', this)"
+        >Services</a
+      >
+      <a href="javascript:void(0)" onclick="showPage('contact', this)"
+        >Contact Us</a
+      >
+      <a href="javascript:void(0)" onclick="showPage('about', this)"
+        >About Us</a
+      >
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+      <img
+        src="pic/bg1_n.jpg"
+        alt="University of Eastern Pangasinan Campus"
+        class="campus-image"
+      />
+
+      <h1>Welcome to Campus Hub!</h1>
+      <p>
+        Campus Hub is the main online resource for students, faculty, and staff
+        at University of Eastern Pangasinan. Whether you're a new student
+        getting used to the campus or a returning student looking for quick
+        access to services, this is your starting point.
+      </p>
+
+      <h2>About the University</h2>
+      <p>
+        UEP was founded in 2005 by Dr. Ramon V. Guico III. Dr. Guico's
+        dissertation advocated for equitable education. The university began in
+        a modest building in the old public market. Since then, it has grown
+        into a modern campus along MacArthur Highway in Canarvacanan, Barangay,
+        with Binalonan's countryside as a backdrop. It houses academic
+        departments such as Criminology, Hospitality and Management, Business
+        Administration, Education, Midwifery, and Information Technology.
+      </p>
+
+      <h2>Quick Announcements</h2>
+      <ul>
+        <li>
+          All students, including new students, must wear the correct department
+          uniform.
+        </li>
+        <li>
+          The list of new TES grantees who are qualified for the first semester
+          of the 2025-2026 academic year has been released.
+        </li>
+        <li>
+          The ID stamp for the second semester is available at the Registrar's
+          Office.
+        </li>
+      </ul>
+    </div>
+    <!-- Students Page -->
+    <div id="students" class="page">
+      <h1>Students</h1>
+      <p>
+        The University of Eastern Pangasinan is home to a diverse group of
+        students from all over the country. Our programs are designed to prepare
+        students for professional careers and further academic study.
+      </p>
+
+      <h2>Undergraduate Programs</h2>
+      <p>
+        The university has nine undergraduate degree programs in Education,
+        Hospitality Management, Criminal Justice Education, Business
+        Administration, Information Technology, Midwifery, Accountancy,
+        Accounting Information System, and Engineering. Class sizes are kept
+        manageable so that students receive proper attention from their
+        instructors.
+      </p>
+
+      <h2>Student Organizations</h2>
+      <p>
+        There are different kinds of student organizations on campus, like
+        academic clubs, cultural groups, volunteer teams, and sports clubs.
+        Students are encouraged to join at least one organization to make
+        friends and learn to lead.
+      </p>
+
+      <h2>Academic Support</h2>
+      <ul>
+        <li>
+          You can get help with your writing at the library on the third floor,
+          which is above the registrar's office.
+        </li>
+        <li>
+          Students who are not doing well in school can make appointments with
+          advisors through the Office of Student Affairs.
+        </li>
+      </ul>
+
+      <h2>Student Handbook</h2>
+      <p>
+        All students must read and follow the rules in the Student Handbook. You
+        can download copies from the portal.
+      </p>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+      <h1>Student Services</h1>
+      <p>
+        The university offers many services to help students with different
+        aspects of their education. Below is a summary of the offices and
+        resources available on campus.
+      </p>
+
+      <div class="service-card">
+        <h3>Financial Aid and Scholarships</h3>
+        <p>
+          Helps students with scholarship applications, grant requests, and
+          student loan processing. The office also manages work-study placements
+          for students who qualify. It is on the second floor of the Finance
+          Room.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>Guidance Office</h3>
+        <p>
+          It offers personal counseling, career guidance, and psychological
+          support.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>Registrar's Office</h3>
+        <p>
+          Manages enrollment, grade records, transcript requests, and graduation
+          clearance. It is located on the ground floor of the Administration
+          Building. The office is open from 7:30 AM to 3:00 PM, Monday through
+          Friday.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>Library</h3>
+        <p>
+          The main library has books, academic journals, and digital resources.
+          There are computer stations with internet access. Open from 7:30 AM to
+          5:00 PM, Monday through Saturday.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>University Clinic</h3>
+        <p>
+          It offers basic medical consultations, first aid, and dental checkups
+          for students who are currently enrolled. You must have a valid campus
+          ID and log in to visit. The clinic is open from 8:00 AM to 4:00 PM,
+          Monday through Saturday.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact Us Page -->
+    <div id="contact" class="page">
+      <h1>Contact Us</h1>
+      <p>
+        If you have any questions, concerns, or feedback, you can call us at
+        (075) 562 5874 or send us a message on our Facebook page. You can also
+        visit us in Binalonan, Pangasinan, Philippines, which is located along
+        MacArthur Highway. Our school is ready to answer your questions.
+      </p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.2915618524103!2d120.5878812!3d16.050352999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391144dc9976017%3A0x1fa90e808d34349b!2sUniversity%20of%20Eastern%20Pangasinan!5e0!3m2!1sen!2sph!4v1772764881286!5m2!1sen!2sph"
+        width="100%"
+        height="450"
+        style="border: 0; margin-top: 20px"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      >
+      </iframe>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page">
+      <h1>Made by BSIT-1A, Group 3</h1>
+      <p>
+        Led by Renz Viernes. The other members are Sev Florenz Doctor, Ervin
+        Baniqued, Jose Anjelo Evangelista, Ferdinand Gabayan, Terrence Dela
+        Cruz, Brylle Torrentira, and Kyle Ayson.
+      </p>
+    </div>
+
+    <div class="footer">HCI Midterm Laboratory Activity</div>
+
+    <script>
+      function showPage(pageId, clickedLink) {
+        var pages = document.querySelectorAll(".page");
+        for (var i = 0; i < pages.length; i++) {
+          pages[i].classList.remove("active");
+        }
+
+        var links = document.querySelectorAll(".nav-bar a");
+        for (var i = 0; i < links.length; i++) {
+          links[i].classList.remove("active");
+        }
+
+        document.getElementById(pageId).classList.add("active");
+        clickedLink.classList.add("active");
+        window.scrollTo(0, 0);
+      }
+    </script>
+  </body>
+</html>
