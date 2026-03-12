@@ -1,0 +1,113 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Poppins",sans-serif;
+}
+
+body{
+height:100vh;
+background:linear-gradient(135deg,#141e30,#243b55);
+color:white;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-size:24px;
+font-weight:700;
+color:#00f7ff;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:#00f7ff;
+}
+
+/* HERO */
+
+.hero{
+height:70vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:15px;
+background:linear-gradient(90deg,#00f7ff,#8a2be2);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+opacity:.8;
+margin-bottom:30px;
+}
+
+.btn{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#00f7ff;
+color:black;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 0 20px #00f7ff;
+}
+
+.btn:hover{
+transform:scale(1.1);
+}
+
+/* FEATURES */
+
+.features{
+display:flex;
+justify-content:center;
+gap:30px;
+padding:50px;
+flex-wrap:wrap;
+}
+
+.card{
+width:260px;
+padding:30px;
+border-radius:15px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+text-align:center;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 20px rgba(0,247,255,0.5);
+}
