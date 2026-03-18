@@ -1,0 +1,53 @@
+
+:root {
+--bg:#0f172a;
+--glass:rgba(255,255,255,0.1);
+--text:#fff;
+--accent:#00f5ff;
+}
+
+body {
+margin:0;
+font-family:Poppins, sans-serif;
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:var(--text);
+}
+
+.navbar {
+display:flex;
+justify-content:space-between;
+padding:15px;
+position:sticky;
+top:0;
+background:var(--glass);
+backdrop-filter:blur(10px);
+}
+
+.nav-links {
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+.hero {
+text-align:center;
+padding:100px 20px;
+}
+
+.btn {
+background:var(--accent);
+padding:10px 20px;
+border:none;
+cursor:pointer;
+}
+
+.skill .bar {
+background:#333;
+height:8px;
+}
+
+.skill span {
+display:block;
+height:100%;
+background:var(--accent);
+}
