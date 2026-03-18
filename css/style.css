@@ -76,3 +76,4 @@ body {
 .nav-link::after {
     content: '';
     position: absolute;
+}
