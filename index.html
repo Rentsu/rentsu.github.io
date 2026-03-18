@@ -1,68 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VIERNES - Freelance Web Developer Portfolio">
+<title>VIERNES | Web Developer</title>
 
-<title>Gaming UI</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
+<div id="preloader">Loading...</div>
 
 <header>
-
-<h1 class="logo">GAME<span>ZONE</span></h1>
-
-<nav>
-<a href="Android-Mod-Menu">Home</a>
-<a href="#">Games</a>
-<a href="#">Leaderboard</a>
-<a href="#">Community</a>
+<nav class="navbar">
+<h1 class="logo">VIERNES</h1>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="hamburger">☰</div>
+<button id="theme-toggle">🌙</button>
 </nav>
-
 </header>
 
-
 <section class="hero">
-
-<h2>ENTER THE ARENA</h2>
-<p>Compete. Play. Dominate.</p>
-
-<a href="files/game.zip" download class="play-btn">DOWNLOAD GAME</a>
-
+<h2>I build <span id="typewriter"></span></h2>
+<p>Modern, fast, and beautiful web experiences.</p>
+<a href="projects.html" class="btn">View Projects</a>
 </section>
 
-
-<section class="games">
-
-<h2>POPULAR GAMES</h2>
-
-<div class="game-grid">
-
-<div class="game-card">
-<h3>Cyber Battle</h3>
-<p>Futuristic FPS combat</p>
-</div>
-
-<div class="game-card">
-<h3>Shadow Arena</h3>
-<p>Battle royale survival</p>
-</div>
-
-<div class="game-card">
-<h3>Galaxy War</h3>
-<p>Space strategy warfare</p>
-</div>
-
-</div>
-
+<section class="about">
+<h2>About Me</h2>
+<p>I'm VIERNES, a freelance developer specializing in modern web applications.</p>
 </section>
 
+<section class="projects">
+<h2>Featured Projects</h2>
+<div class="carousel">
+<div class="card">E-Commerce Website</div>
+<div class="card">Portfolio UI Design</div>
+<div class="card">Mobile App UI</div>
+</div>
+</section>
+
+<section class="skills">
+<h2>Skills</h2>
+<div class="skill">
+<p>HTML</p><div class="bar"><span style="width:90%"></span></div>
+</div>
+<div class="skill">
+<p>CSS</p><div class="bar"><span style="width:85%"></span></div>
+</div>
+<div class="skill">
+<p>JavaScript</p><div class="bar"><span style="width:80%"></span></div>
+</div>
+</section>
+
+<section class="testimonials">
+<h2>Testimonials</h2>
+<div class="slider">
+<p>"Amazing developer!"</p>
+</div>
+</section>
+
+<section class="cta">
+<h2>Let's Work Together</h2>
+<a href="contact.html" class="btn">Contact Me</a>
+</section>
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
 </body>
 </html>
