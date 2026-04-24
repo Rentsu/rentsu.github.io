@@ -1,34 +1,21 @@
-const toggleBtn = document.getElementById("themeToggle");
-
-// APPLY THEME
-function applyTheme() {
-  const theme = localStorage.getItem("theme");
-
-  if (theme === "light") {
-    document.body.classList.add("light");
-  } else {
-    document.body.classList.remove("light");
-  }
-}
-
-// TOGGLE THEME
+// Toggle Light/Dark Mode
 function toggleTheme() {
-  const isLight = document.body.classList.toggle("light");
-  localStorage.setItem("theme", isLight ? "light" : "dark");
+  document.body.classList.toggle("light");
 }
 
-// INIT
-window.addEventListener("DOMContentLoaded", () => {
-  applyTheme();
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", toggleTheme);
+// OPTIONAL: auto save theme
+window.onload = function () {
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
   }
-});
+};
 
-// SYNC ACROSS PAGES
-window.addEventListener("storage", (event) => {
-  if (event.key === "theme") {
-    applyTheme();
+function toggleTheme() {
+  document.body.classList.toggle("light");
+
+  if (document.body.classList.contains("light")) {
+    localStorage.setItem("theme", "light");
+  } else {
+    localStorage.setItem("theme", "dark");
   }
-});
+}
