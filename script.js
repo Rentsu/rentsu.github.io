@@ -11,21 +11,22 @@ function applyTheme() {
   }
 }
 
-// RUN ON PAGE LOAD
-window.addEventListener("DOMContentLoaded", applyTheme);
-
-// TOGGLE BUTTON
-if (toggleBtn) {
-  toggleBtn.addEventListener("click", () => {
-    const isLight = document.body.classList.toggle("light");
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-
-    // 🔥 IMPORTANT: force update same page immediately
-    applyTheme();
-  });
+// TOGGLE THEME
+function toggleTheme() {
+  const isLight = document.body.classList.toggle("light");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
 }
 
-// 🔥 SYNC FROM OTHER PAGES/TABS
+// INIT
+window.addEventListener("DOMContentLoaded", () => {
+  applyTheme();
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", toggleTheme);
+  }
+});
+
+// SYNC ACROSS PAGES
 window.addEventListener("storage", (event) => {
   if (event.key === "theme") {
     applyTheme();
