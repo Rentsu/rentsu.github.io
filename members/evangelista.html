@@ -7,37 +7,6 @@
 
 <link rel="stylesheet" href="../style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-/* NAVBAR FIX - ALWAYS ON TOP */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  background: #2d2d2d;
-}
-
-/* SAFE SECTION STACK */
-.section {
-  position: relative;
-  z-index: 1;
-}
-
-/* CARD BASE */
-.card {
-  background: #2d2d2d;
-  padding: 15px;
-  border-radius: 10px;
-  transition: 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* HOVER FIX (NO OVERLAP BUG) */
-.card:hover {
-  transform: translateY(-8px);
-  z-index: 2;
-}
-</style>
 </head>
 
 <body>
@@ -50,6 +19,11 @@ header {
     <a href="../index.html#about">About</a>
     <a href="../index.html#projects">Projects</a>
     <a href="../index.html#members">Members</a>
+
+    <!-- THEME TOGGLE -->
+    <button onclick="toggleTheme()" style="margin-left:10px; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
+      🌙 / ☀️
+    </button>
   </nav>
 </header>
 
@@ -67,11 +41,8 @@ header {
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- ABOUT -->
     <h3>💫 About Me</h3>
-    <p>
-      I'm a BSIT Student that likes to create niche projects, and doesn't talk much.
-    </p>
+    <p>I'm a BSIT Student that likes to create niche projects, and doesn't talk much.</p>
 
     <p>🎓 Currently pursuing a bachelor's degree in Information Technology</p>
     <p>🧑‍💻 Building niche projects as a hobby</p>
@@ -80,7 +51,6 @@ header {
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- TECH STACK -->
     <h3>💻 Tech Stack</h3>
     <p>
       <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=flat-square&logo=c%2B%2B&logoColor=white">
@@ -98,24 +68,29 @@ header {
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- GITHUB STATS -->
     <h3>📊 GitHub Stats</h3>
 
-    <img src="https://github-readme-stats.vercel.app/api?username=ajgiou&theme=dark&hide_border=false&include_all_commits=true&count_private=false" style="width:100%; border-radius:10px; margin-bottom:10px;">
+    <img src="https://github-readme-stats.vercel.app/api?username=ajgiou&theme=dark&hide_border=false&include_all_commits=true&count_private=false"
+         style="width:100%; border-radius:10px; margin-bottom:10px;">
 
-    <img src="https://nirzak-streak-stats.vercel.app/?user=ajgiou&theme=dark&hide_border=false" style="width:100%; border-radius:10px; margin-bottom:10px;">
+    <img src="https://nirzak-streak-stats.vercel.app/?user=ajgiou&theme=dark&hide_border=false"
+         style="width:100%; border-radius:10px; margin-bottom:10px;">
 
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ajgiou&theme=dark&hide_border=false&include_all_commits=true&count_private=false&layout=compact" style="width:100%; border-radius:10px; margin-bottom:10px;">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=ajgiou&theme=dark&hide_border=false&include_all_commits=true&count_private=false&layout=compact"
+         style="width:100%; border-radius:10px; margin-bottom:10px;">
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- QUOTE -->
     <h3>✍️ Random Dev Quote</h3>
-    <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" style="width:100%; border-radius:10px;">
+    <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical"
+         style="width:100%; border-radius:10px;">
 
   </div>
 
 </section>
 
+<!-- JS CONNECTION -->
+<script src="../script.js"></script>
+
 </body>
-  </html>
+</html>
