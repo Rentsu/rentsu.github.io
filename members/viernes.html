@@ -7,37 +7,6 @@
 
 <link rel="stylesheet" href="../style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-/* NAVBAR FIX - ALWAYS ON TOP */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  background: #2d2d2d;
-}
-
-/* SAFE SECTION STACK */
-.section {
-  position: relative;
-  z-index: 1;
-}
-
-/* CARD BASE */
-.card {
-  background: #2d2d2d;
-  padding: 15px;
-  border-radius: 10px;
-  transition: 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* HOVER FIX (NO OVERLAP BUG) */
-.card:hover {
-  transform: translateY(-8px);
-  z-index: 2;
-}
-</style>
 </head>
 
 <body>
@@ -56,52 +25,42 @@ header {
 <!-- PROFILE -->
 <section class="section">
 
-  <div class="card" style="max-width:700px; margin:auto; text-align:center;">
+  <div class="card profile-card">
 
-    <!-- PROFILE IMAGE -->
-    <img src="viernes.jpg" alt="Viernes Renz Joseph"
-      style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:15px; border:3px solid #00d4aa;">
+    <img src="viernes.jpg" alt="Viernes Renz Joseph" class="profile-img">
 
     <h2>Viernes, Renz Joseph</h2>
     <p><strong>Developer</strong></p>
 
-    <hr style="opacity:0.2; margin:15px 0;">
+    <hr>
 
-    <!-- INTRO -->
     <h3>Hello! 👋</h3>
     <p>I'm a <b>BSIT Student</b> passionate about technology and software development.</p>
 
-    <hr style="opacity:0.2; margin:15px 0;">
+    <hr>
 
-    <!-- QUOTE -->
     <h3>💬 Favorite Quote</h3>
-    <p><i>"The only way to do great work is to love what you do." — Steve Jobs</i></p>
+    <p><i>"Ang taong matiyaga, ay masipag"</i></p>
 
-    <hr style="opacity:0.2; margin:15px 0;">
+    <hr>
 
-    <!-- ABOUT -->
     <h3>About Me</h3>
-    <p>🎓 Currently pursuing a Bachelor of Science in Information Technology (BSIT)</p>
+    <p>🎓 Currently pursuing BSIT</p>
     <p>💻 Passionate about coding and problem-solving</p>
     <p>🌱 Always learning new technologies and best practices</p>
 
-    <hr style="opacity:0.2; margin:15px 0;">
+    <hr>
 
-    <!-- STREAK -->
     <h3>🔥 Streak Stats</h3>
-    <img src="https://streak-stats.demolab.com?user=rentsu&theme=dark&ring=FF4F8B&fire=FF4F8B&currStreakLabel=FF4F8B"
-         style="width:100%; border-radius:10px; margin-bottom:10px;">
+    <img src="https://streak-stats.demolab.com?user=rentsu&theme=dark&ring=FF4F8B&fire=FF4F8B&currStreakLabel=FF4F8B" class="img-full">
 
-    <hr style="opacity:0.2; margin:15px 0;">
+    <hr>
 
-    <!-- GITHUB STATS -->
     <h3>📊 GitHub Stats</h3>
-    <img src="https://github-readme-stats.vercel.app/api?username=rentsu&show_icons=true&theme=dark&hide_border=true"
-         style="width:100%; border-radius:10px; margin-bottom:10px;">
+    <img src="https://github-readme-stats.vercel.app/api?username=rentsu&show_icons=true&theme=dark&hide_border=true" class="img-full">
 
-    <hr style="opacity:0.2; margin:15px 0;">
+    <hr>
 
-    <!-- TECH STACK -->
     <h3>🛠️ Tech Stack</h3>
     <p>
       <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white">
@@ -112,19 +71,19 @@ header {
       <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white">
     </p>
 
-    <hr style="opacity:0.2; margin:15px 0;">
+    <hr>
 
-    <!-- PROFILE VIEWS -->
-    <img src="https://komarev.com/ghpvc/?username=rentsu&color=blueviolet&style=flat"
-         alt="Profile views" style="margin-top:10px;">
-         
-         <h3>✍️ Random Dev Quote</h3>
-    <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" style="width:100%; border-radius:10px;">
-    
+    <img src="https://komarev.com/ghpvc/?username=rentsu&color=blueviolet&style=flat">
+
+    <h3>✍️ Random Dev Quote</h3>
+    <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" class="img-full">
 
   </div>
 
 </section>
 
+<!-- JS -->
+<script src="../script.js"></script>
+
 </body>
-      </html>
+</html>
