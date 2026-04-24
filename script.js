@@ -1,5 +1,17 @@
-const button = document.querySelector(".btn");
+// Theme Toggle
+const toggle = document.getElementById("themeToggle");
 
-button.addEventListener("click", function(){
-alert("Welcome to the website!");
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  toggle.textContent = document.body.classList.contains("light") ? "🌞" : "🌙";
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth"
+    });
+  });
 });
