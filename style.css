@@ -50,8 +50,13 @@ nav a {
   padding: 15px;
   border-radius: 10px;
   transition: 0.3s;
+  
 }
-
+a.card {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
 .card:hover {
   transform: scale(1.05);
   background: #333;
