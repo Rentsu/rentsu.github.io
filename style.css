@@ -52,10 +52,24 @@ nav a {
   transition: 0.3s;
   
 }
-a.card {
+.card {
   color: inherit;
   text-decoration: none;
   display: block;
+}
+.card,
+.card:visited,
+.card:active {
+  color: white;
+  text-decoration: none;
+}
+.card {
+  color: white !important;
+  text-decoration: none !important;
+  }
+
+.card:hover {
+  color: white;
 }
 .card:hover {
   transform: scale(1.05);
