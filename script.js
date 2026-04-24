@@ -1,21 +1,33 @@
-// Toggle Light/Dark Mode
-function toggleTheme() {
-  document.body.classList.toggle("light");
-}
+const toggleBtn = document.getElementById("themeToggle");
 
-// OPTIONAL: auto save theme
-window.onload = function () {
-  if (localStorage.getItem("theme") === "light") {
+// APPLY THEME
+function applyTheme() {
+  const theme = localStorage.getItem("theme");
+
+  if (theme === "light") {
     document.body.classList.add("light");
-  }
-};
-
-function toggleTheme() {
-  document.body.classList.toggle("light");
-
-  if (document.body.classList.contains("light")) {
-    localStorage.setItem("theme", "light");
   } else {
-    localStorage.setItem("theme", "dark");
+    document.body.classList.remove("light");
   }
 }
+
+// RUN ON PAGE LOAD
+window.addEventListener("DOMContentLoaded", applyTheme);
+
+// TOGGLE BUTTON
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    const isLight = document.body.classList.toggle("light");
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+
+    // 🔥 IMPORTANT: force update same page immediately
+    applyTheme();
+  });
+}
+
+// 🔥 SYNC FROM OTHER PAGES/TABS
+window.addEventListener("storage", (event) => {
+  if (event.key === "theme") {
+    applyTheme();
+  }
+});
