@@ -7,37 +7,6 @@
 
 <link rel="stylesheet" href="../style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-/* NAVBAR FIX - ALWAYS ON TOP */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  background: #2d2d2d;
-}
-
-/* SAFE SECTION STACK */
-.section {
-  position: relative;
-  z-index: 1;
-}
-
-/* CARD BASE */
-.card {
-  background: #2d2d2d;
-  padding: 15px;
-  border-radius: 10px;
-  transition: 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* HOVER FIX (NO OVERLAP BUG) */
-.card:hover {
-  transform: translateY(-8px);
-  z-index: 2;
-}
-</style>
 </head>
 
 <body>
@@ -50,6 +19,11 @@ header {
     <a href="../index.html#about">About</a>
     <a href="../index.html#projects">Projects</a>
     <a href="../index.html#members">Members</a>
+
+    <!-- THEME TOGGLE -->
+    <button onclick="toggleTheme()" style="margin-left:10px; padding:5px 10px; border:none; border-radius:5px; cursor:pointer;">
+      🌙 / ☀️
+    </button>
   </nav>
 </header>
 
@@ -67,19 +41,16 @@ header {
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- INTRO -->
     <h3>Hello! 👋</h3>
     <p>I'm a <b>BSIT Student</b> passionate about photo & video editing and technology.</p>
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- QUOTE -->
     <h3>💬 Favorite Quote</h3>
     <p><i>"A picture is worth a thousand words, but a video is worth a million."</i></p>
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- ABOUT -->
     <h3>👤 About Me</h3>
     <p>🎓 BSIT Student</p>
     <p>🏫 University of Eastern Pangasinan</p>
@@ -90,21 +61,18 @@ header {
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- STREAK -->
     <h3>🔥 Streak Stats</h3>
     <img src="https://streak-stats.demolab.com?user=ferdinandgabayanoropilla-7&theme=dark&hide_border=true&fire=FFB800&ring=FFB800&currStreakLabel=FFB800"
          style="width:100%; border-radius:10px; margin-bottom:10px;">
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- GITHUB STATS -->
     <h3>📊 GitHub Stats</h3>
     <img src="https://github-readme-stats.vercel.app/api?username=ferdinandgabayanoropilla-7&show_icons=true&theme=dark&hide_border=true&title_color=FFB800&icon_color=FFB800"
          style="width:100%; border-radius:10px; margin-bottom:10px;">
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- SKILLS -->
     <h3>🛠️ Skills & Tools</h3>
     <p>
       <img src="https://img.shields.io/badge/Photoshop-31A8FF?style=flat&logo=adobephotoshop&logoColor=white">
@@ -118,20 +86,20 @@ header {
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- CONTACT -->
     <h3>📬 Contact Me</h3>
     <p>📧 oropillaferdinand7@gmail.com</p>
     <p>📱 0954 974 7075</p>
 
     <hr style="opacity:0.2; margin:15px 0;">
 
-    <!-- PROFILE VIEWS -->
-    <img src="https://komarev.com/ghpvc/?username=ferdinandgabayanoropilla-7&color=FFB800&style=flat&label=Profile+Views"
-         alt="Profile Views">
+    <img src="https://komarev.com/ghpvc/?username=ferdinandgabayanoropilla-7&color=FFB800&style=flat&label=Profile+Views">
 
   </div>
 
 </section>
 
+<!-- JS CONNECTION -->
+<script src="../script.js"></script>
+
 </body>
-        </html>
+</html>
