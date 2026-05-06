@@ -4,124 +4,512 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Group 3 Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --surface: #161618;
+    --border: #2a2a2e;
+    --accent: #7c6af7;
+    --accent2: #f76a8a;
+    --text: #f0f0f5;
+    --muted: #888899;
+    --card: #1a1a1e;
+  }
+  [data-theme="light"] {
+    --bg: #f5f5fa;
+    --surface: #ffffff;
+    --border: #e0e0ea;
+    --accent: #5a48e8;
+    --accent2: #e8486a;
+    --text: #111118;
+    --muted: #666677;
+    --card: #ffffff;
+  }
 
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* NAV */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 64px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  nav { display: flex; gap: 0.25rem; }
+  nav button {
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--muted);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  nav button:hover { color: var(--text); background: var(--surface); }
+  nav button.active { color: var(--text); background: var(--surface); }
+
+  .theme-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.35rem 0.7rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  .theme-btn:hover { border-color: var(--accent); }
+
+  /* PAGES */
+  .page { display: none; padding-top: 64px; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* HOME PAGE */
+  .hero {
+    min-height: calc(100vh - 64px);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(124,106,247,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 1.1rem; color: var(--muted); max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s 0.3s ease both; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 24px rgba(124,106,247,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,106,247,0.5); }
+
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border); cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500;
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 5rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .hero-stats div { text-align: center; }
+  .hero-stats .num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-stats .label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.5px; }
+
+  /* SECTION SHARED */
+  .section-container { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .section-subtitle { color: var(--muted); margin-top: 0.75rem; max-width: 540px; line-height: 1.6; }
+
+  /* ABOUT PAGE */
+  .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  @media(max-width:768px) { .about-layout { grid-template-columns: 1fr; } }
+
+  .about-text p {
+    color: var(--muted); line-height: 1.8; margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .about-text p strong { color: var(--text); }
+
+  .about-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .stat-box:hover { border-color: var(--accent); }
+  .stat-icon { font-size: 2rem; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-desc { font-size: 0.85rem; color: var(--muted); }
+
+  /* PROJECTS PAGE */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem; letter-spacing: 2px;
+    color: var(--accent); font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  .project-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .project-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  /* MEMBERS PAGE */
+  .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+  .member-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .member-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+  .member-avatar {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800;
+    color: #fff; margin-bottom: 1.2rem;
+  }
+  .member-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .member-role {
+    display: inline-block;
+    font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    margin-bottom: 0.7rem;
+  }
+  .member-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+  .member-arrow {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    color: var(--border); font-size: 1.1rem;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .member-card:hover .member-arrow { color: var(--accent); transform: translate(2px, -2px); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center; padding: 2rem;
+    color: var(--muted); font-size: 0.85rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeUp 0.5s ease both; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
 </head>
-
 <body>
 
 <!-- NAV -->
 <header>
   <div class="logo">Group 3</div>
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#members">Members</a>
+    <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
+    <button onclick="showPage('about')" id="nav-about">About</button>
+    <button onclick="showPage('projects')" id="nav-projects">Projects</button>
+    <button onclick="showPage('members')" id="nav-members">Members</button>
   </nav>
-  <button onclick="toggleTheme()" style="margin-left:10px; padding:5px 10px; border-radius:5px; border:none; cursor:pointer;">
-  🌙 / ☀️
-  </button>
+  <button class="theme-btn" onclick="toggleTheme()">🌙 / ☀️</button>
 </header>
 
-<!-- HOME -->
-<section id="home" class="section hero">
-  <h1>Group 3 Portfolio</h1>
-  <p>Building projects, learning together, growing as developers.</p>
-  <a href="#projects" class="btn">View Projects</a>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <h2>About Group</h2>
-  <p>Group 3 is a collaborative team of students focused on developing web and software projects using modern technologies.</p>
-
-  <div class="stats">
-    <div>8 Members</div>
-    <div>6+ Projects</div>
-    <div>1 Team</div>
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-badge">✦ BSIT Group 3</div>
+    <h1>We Build.<br><span>We Learn.</span><br>We Grow.</h1>
+    <p>A collaborative team of students building web and software projects with modern technologies.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('projects')">View Projects</button>
+      <button class="btn-secondary" onclick="showPage('members')">Meet the Team</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="num">7</div><div class="label">Members</div></div>
+      <div><div class="num">4+</div><div class="label">Projects</div></div>
+      <div><div class="num">1</div><div class="label">Dream Team</div></div>
+    </div>
   </div>
-</section>
+  <footer><p>© 2026 Group 3 Portfolio — Kunware maangas 🚀</p></footer>
+</div>
 
-<!-- PROJECTS -->
-<section id="projects" class="section">
-  <h2>Projects</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>School System</h3>
-      <p>Windods based enrollment system</p>
+<!-- ABOUT PAGE -->
+<div id="page-about" class="page">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-tag">Who We Are</div>
+      <h2 class="section-title">About Group 3</h2>
+      <p class="section-subtitle">A team with a shared goal: learn by doing, and build things that matter.</p>
     </div>
-
-    <div class="card">
-      <h3>POS App</h3>
-      <p>Sales tracking system</p>
+    <div class="about-layout">
+      <div class="about-text">
+        <p><strong>Group 3</strong> is a collaborative team of students focused on developing web and software projects using modern technologies.</p>
+        <p>We believe in learning through hands-on experience. Every project we build is a chance to sharpen our skills, challenge ourselves, and support each other.</p>
+        <p>From <strong>enrollment systems</strong> to <strong>POS applications</strong> and <strong>portfolio websites</strong>, we tackle real-world problems with practical solutions.</p>
+        <p>We're not just classmates — we're a crew that figures things out together.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-icon">👥</div>
+          <div>
+            <div class="stat-num">7</div>
+            <div class="stat-desc">Team Members</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🚀</div>
+          <div>
+            <div class="stat-num">4+</div>
+            <div class="stat-desc">Projects Completed</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon">🏆</div>
+          <div>
+            <div class="stat-num">1</div>
+            <div class="stat-desc">Unstoppable Team</div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="card">
-      <h3>POS website</h3>
-      <p>Sales tracking system</p>
-    </div>
-
-    <div class="card">
-      <h3>Portfolio Website</h3>
-      <p>Personal portfolio system</p>
-    </div>
-
   </div>
-</section>
+  <footer><p>© 2026 Group 3 Portfolio — Kunware maangas 🚀</p></footer>
+</div>
 
-<!-- MEMBERS -->
-<section id="members" class="section">
-  <h2>Members</h2>
-
-  <div class="grid">
-
-    <div class="card" onclick="location.href='members/viernes.html'">
-      <h3>Viernes, Renz (Leader)</h3>
-      <p>Full-stack developer focused on Android systems.(tamad)</p>
+<!-- PROJECTS PAGE -->
+<div id="page-projects" class="page">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-tag">What We Built</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">A collection of systems and applications built by the team.</p>
     </div>
-
-    <div class="card" onclick="location.href='members/doctor.html'">
-      <h3>Doctor, Sev Florenz</h3>
-      <p>Frontend developer and UI designer.(Ui lang talaga)</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <h3>School System</h3>
+        <p>Windows-based enrollment system for managing student records and registration.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <h3>POS App</h3>
+        <p>Desktop sales tracking system with inventory management features.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <h3>POS Website</h3>
+        <p>Web-based point-of-sale interface for real-time sales tracking.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <h3>Portfolio Website</h3>
+        <p>Personal portfolio system showcasing individual member profiles and work.</p>
+      </div>
     </div>
-
-    <div class="card" onclick="location.href='members/evangelista.html'">
-      <h3>Evangelista, Jose Anjelo</h3>
-      <p>Backend logic and database handling.</p>
-    </div>
-
-    <div class="card" onclick="location.href='members/baniqued.html'">
-      <h3>Baniqued, Ervin</h3>
-      <p>UI/UX and system documentation.</p>
-    </div>
-
-    <div class="card" onclick="location.href='members/oropilla.html'">
-      <h3>Oropilla, Ferdinand</h3>
-      <p>Frontend development support.</p>
-    </div>
-
-    <div class="card" onclick="location.href='members/delacruz.html'">
-      <h3>Dela Cruz, Terrence</h3>
-      <p>Testing and debugging systems.</p>
-    </div>
-
-
-    <div class="card" onclick="location.href='members/ayson.html'">
-      <h3>Ayson, Kyle</h3>
-      <p>Assistant developer and documentation.</p>
-    </div>
-
   </div>
-</section>
+  <footer><p>© 2026 Group 3 Portfolio — Kunware maangas 🚀</p></footer>
+</div>
 
-<footer>
-  <p>© 2026 Group 3 Portfolio(Kunware maangas)</p>
-</footer>
+<!-- MEMBERS PAGE -->
+<div id="page-members" class="page">
+  <div class="section-container">
+    <div class="section-header">
+      <div class="section-tag">The Crew</div>
+      <h2 class="section-title">Members</h2>
+      <p class="section-subtitle">Seven people. One team. Infinite potential (daw).</p>
+    </div>
+    <div class="members-grid">
 
-<script src="script.js"></script>
+      <div class="member-card" onclick="location.href='members/viernes.html'">
+        <div class="member-avatar">RV</div>
+        <div class="member-role">⭐ Leader</div>
+        <h3>Viernes, Renz</h3>
+        <p>Full-stack developer focused on Android systems.</p>
+        <div class="member-arrow">↗</div>
+      </div>
+
+      <div class="member-card" onclick="location.href='members/doctor.html'">
+        <div class="member-avatar">SF</div>
+        <div class="member-role">UI / Frontend</div>
+        <h3>Doctor, Sev Florenz</h3>
+        <p>Frontend developer and UI designer.</p>
+        <div class="member-arrow">↗</div>
+      </div>
+
+      <div class="member-card" onclick="location.href='members/evangelista.html'">
+        <div class="member-avatar">JA</div>
+        <div class="member-role">Backend</div>
+        <h3>Evangelista, Jose Anjelo</h3>
+        <p>Backend logic and database handling.</p>
+        <div class="member-arrow">↗</div>
+      </div>
+
+      <div class="member-card" onclick="location.href='members/baniqued.html'">
+        <div class="member-avatar">EB</div>
+        <div class="member-role">UI/UX & Docs</div>
+        <h3>Baniqued, Ervin</h3>
+        <p>UI/UX design and system documentation.</p>
+        <div class="member-arrow">↗</div>
+      </div>
+
+      <div class="member-card" onclick="location.href='members/oropilla.html'">
+        <div class="member-avatar">FO</div>
+        <div class="member-role">Frontend</div>
+        <h3>Oropilla, Ferdinand</h3>
+        <p>Frontend development support and implementation.</p>
+        <div class="member-arrow">↗</div>
+      </div>
+
+      <div class="member-card" onclick="location.href='members/delacruz.html'">
+        <div class="member-avatar">TD</div>
+        <div class="member-role">QA & Testing</div>
+        <h3>Dela Cruz, Terrence</h3>
+        <p>Testing and debugging systems to ensure quality.</p>
+        <div class="member-arrow">↗</div>
+      </div>
+
+      <div class="member-card" onclick="location.href='members/ayson.html'">
+        <div class="member-avatar">KA</div>
+        <div class="member-role">Dev & Docs</div>
+        <h3>Ayson, Kyle</h3>
+        <p>Assistant developer and documentation support.</p>
+        <div class="member-arrow">↗</div>
+      </div>
+
+    </div>
+  </div>
+  <footer><p>© 2026 Group 3 Portfolio  🚀</p></footer>
+</div>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Re-trigger animations
+    const page = document.getElementById('page-' + name);
+    page.querySelectorAll('.project-card, .member-card, .stat-box, .about-text').forEach((el, i) => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = `fadeUp 0.4s ${i * 0.07}s ease both`;
+    });
+  }
+
+  function toggleTheme() {
+    const root = document.documentElement;
+    root.dataset.theme = root.dataset.theme === 'light' ? '' : 'light';
+  }
+</script>
 </body>
 </html>
