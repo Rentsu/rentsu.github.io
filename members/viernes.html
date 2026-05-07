@@ -3,90 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Viernes, Renz Joseph</title>
+<title>Viernes, Renz Joseph — Group 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0f; --surface: #161618; --border: #2a2a2e;
+    --accent: #7c6af7; --accent2: #f76a8a; --text: #f0f0f5; --muted: #888899; --card: #1a1a1e;
+  }
+  [data-theme="light"] {
+    --bg: #f5f5fa; --surface: #ffffff; --border: #e0e0ea;
+    --accent: #5a48e8; --accent2: #e8486a; --text: #111118; --muted: #666677; --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
 
-<link rel="stylesheet" href="../style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 64px;
+    background: var(--bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-decoration: none;
+  }
+  nav { display: flex; gap: 0.25rem; }
+  nav a {
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    color: var(--muted); padding: 0.4rem 0.9rem; border-radius: 8px;
+    transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center;
+  }
+  nav a:hover { color: var(--text); background: var(--surface); }
+  .header-right { display: flex; align-items: center; gap: 0.75rem; }
+  .theme-btn {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.35rem 0.7rem; cursor: pointer; font-size: 1rem; transition: all 0.2s;
+  }
+  .theme-btn:hover { border-color: var(--accent); }
+
+  .hamburger {
+    display: none; flex-direction: column; justify-content: center; align-items: center;
+    gap: 5px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.45rem 0.6rem; cursor: pointer; transition: border-color 0.2s; width: 40px; height: 38px;
+  }
+  .hamburger:hover { border-color: var(--accent); }
+  .hamburger span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s ease; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none; position: fixed; top: 64px; left: 0; right: 0;
+    background: var(--bg); border-bottom: 1px solid var(--border); z-index: 99;
+    padding: 0.75rem 1.5rem 1rem; flex-direction: column; gap: 0.25rem;
+    animation: slideDown 0.2s ease;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500; color: var(--muted); padding: 0.65rem 1rem;
+    border-radius: 10px; text-align: left; transition: all 0.2s; width: 100%; text-decoration: none; display: block;
+  }
+  .mobile-nav a:hover { color: var(--text); background: var(--surface); }
+
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { header { padding: 0 1.25rem; } nav { display: none; } .hamburger { display: flex; } }
+
+  /* PROFILE PAGE */
+  .profile-page { padding-top: 64px; min-height: 100vh; }
+
+  .profile-hero {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .profile-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 50% 0%, rgba(124,106,247,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .profile-hero-inner {
+    max-width: 760px; margin: 0 auto;
+    display: flex; align-items: center; gap: 2.5rem;
+    position: relative; z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+  @media(max-width:600px) { .profile-hero-inner { flex-direction: column; text-align: center; } }
+
+  .avatar-wrap {
+    flex-shrink: 0;
+    width: 110px; height: 110px; border-radius: 24px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    padding: 3px;
+  }
+  .avatar-wrap img {
+    width: 100%; height: 100%; border-radius: 21px; object-fit: cover;
+    background: var(--card);
+  }
+  .avatar-wrap .avatar-initials {
+    width: 100%; height: 100%; border-radius: 21px;
+    background: var(--card);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #fff;
+  }
+
+  .profile-meta { flex: 1; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; color: var(--muted); text-decoration: none;
+    margin-bottom: 1rem; transition: color 0.2s;
+    font-weight: 500; letter-spacing: 0.3px;
+  }
+  .back-link:hover { color: var(--accent); }
+  .profile-role {
+    display: inline-block; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .profile-meta h1 {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800; letter-spacing: -1px; line-height: 1.1; margin-bottom: 0.6rem;
+  }
+  .profile-meta .tagline { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+
+  /* CONTENT */
+  .profile-content { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  .section-block {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 2rem; margin-bottom: 1.5rem;
+    animation: fadeUp 0.5s ease both;
+    transition: border-color 0.2s;
+  }
+  .section-block:hover { border-color: rgba(124,106,247,0.3); }
+
+  .block-label {
+    font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .block-quote {
+    font-style: italic; color: var(--muted); font-size: 1rem;
+    line-height: 1.7; border-left: 3px solid var(--accent); padding-left: 1.2rem;
+  }
+
+  .about-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .about-list li { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+  .about-list li .icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+  .tech-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tech-badges img { height: 24px; border-radius: 4px; }
+
+  .github-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .github-stats img { width: 100%; border-radius: 10px; }
+
+  .pv-badge img { border-radius: 6px; }
+
+  footer {
+    border-top: 1px solid var(--border); text-align: center;
+    padding: 2rem; color: var(--muted); font-size: 0.85rem;
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
 </head>
-
 <body>
 
-<!-- NAV -->
 <header>
-  <div class="logo">Group 3</div>
+  <a class="logo" href="../index.html">Group 3</a>
   <nav>
     <a href="../index.html">Home</a>
-    <a href="../index.html#about">About</a>
-    <a href="../index.html#projects">Projects</a>
-    <a href="../index.html#members">Members</a>
+    <a href="../index.html">About</a>
+    <a href="../index.html">Projects</a>
+    <a href="../index.html">Members</a>
   </nav>
-  <button onclick="toggleTheme()" style="margin-left:10px; padding:5px 10px; border-radius:5px; border:none; cursor:pointer;">
-  🌙 / ☀️
-  </button>
+  <div class="header-right">
+    <button class="theme-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
-<!-- PROFILE -->
-<section class="section">
+<div class="mobile-nav" id="mobile-nav">
+  <a href="../index.html">🏠 Home</a>
+  <a href="../index.html">👥 About</a>
+  <a href="../index.html">🚀 Projects</a>
+  <a href="../index.html">🌟 Members</a>
+</div>
 
-  <div class="card profile-card">
-
-    <img src="viernes.jpg" alt="Viernes Renz Joseph" class="profile-img">
-
-    <h2>Viernes, Renz Joseph</h2>
-    <p><strong>Developer</strong></p>
-
-    <hr>
-
-    <h3>Hello! 👋</h3>
-    <p>I'm a <b>BSIT Student</b> passionate about technology and software development.</p>
-
-    <hr>
-
-    <h3>💬 Favorite Quote</h3>
-    <p><i>"Ang taong matiyaga, ay masipag"</i></p>
-
-    <hr>
-
-    <h3>About Me</h3>
-    <p>🎓 Currently pursuing BSIT</p>
-    <p>💻 Passionate about coding and problem-solving</p>
-    <p>🌱 Always learning new technologies and best practices</p>
-
-    <hr>
-
-    <h3>🔥 Streak Stats</h3>
-    <img src="https://streak-stats.demolab.com?user=rentsu&theme=dark&ring=FF4F8B&fire=FF4F8B&currStreakLabel=FF4F8B" class="img-full">
-
-    <hr>
-
-    <h3>📊 GitHub Stats</h3>
-    <img src="https://github-readme-stats.vercel.app/api?username=rentsu&show_icons=true&theme=dark&hide_border=true" class="img-full">
-
-    <hr>
-
-    <h3>🛠️ Tech Stack</h3>
-    <p>
-      <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white">
-      <img src="https://img.shields.io/badge/VB.NET-512BD4?style=flat&logo=dotnet&logoColor=white">
-      <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white">
-      <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white">
-      <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white">
-      <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white">
-    </p>
-
-    <hr>
-
-    <img src="https://komarev.com/ghpvc/?username=rentsu&color=blueviolet&style=flat">
-
-    <h3>✍️ Random Dev Quote</h3>
-    <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" class="img-full">
-
+<div class="profile-page">
+  <div class="profile-hero">
+    <div class="profile-hero-inner">
+      <div class="avatar-wrap">
+        <img src="viernes.jpg" alt="Viernes Renz Joseph" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="avatar-initials" style="display:none;">RV</div>
+      </div>
+      <div class="profile-meta">
+        <a class="back-link" href="../index.html">← Back to Members</a>
+        <div class="profile-role">⭐ Leader</div>
+        <h1>Viernes, Renz Joseph</h1>
+        <p class="tagline">Full-stack developer focused on Android systems and team leadership.</p>
+      </div>
+    </div>
   </div>
 
-</section>
+  <div class="profile-content">
 
-<!-- JS -->
-<script src="../script.js"></script>
+    <div class="section-block" style="animation-delay:0.05s">
+      <div class="block-label">About Me</div>
+      <ul class="about-list">
+        <li><span class="icon">🎓</span> Currently pursuing BSIT</li>
+        <li><span class="icon">💻</span> Passionate about coding and problem-solving</li>
+        <li><span class="icon">🌱</span> Always learning new technologies and best practices</li>
+      </ul>
+    </div>
 
+    <div class="section-block" style="animation-delay:0.1s">
+      <div class="block-label">Favorite Quote</div>
+      <p class="block-quote">"Ang taong matiyaga, ay masipag"</p>
+    </div>
+
+    <div class="section-block" style="animation-delay:0.15s">
+      <div class="block-label">Tech Stack</div>
+      <div class="tech-badges">
+        <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++">
+        <img src="https://img.shields.io/badge/VB.NET-512BD4?style=flat&logo=dotnet&logoColor=white" alt="VB.NET">
+        <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML">
+        <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub">
+        <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code">
+      </div>
+    </div>
+
+    <div class="section-block" style="animation-delay:0.2s">
+      <div class="block-label">GitHub Stats</div>
+      <div class="github-stats">
+        <img src="https://streak-stats.demolab.com?user=rentsu&theme=dark&ring=7c6af7&fire=f76a8a&currStreakLabel=7c6af7&hide_border=true&background=1a1a1e&stroke=2a2a2e" alt="Streak Stats">
+        <img src="https://github-readme-stats.vercel.app/api?username=rentsu&show_icons=true&theme=dark&hide_border=true&bg_color=1a1a1e&title_color=7c6af7&icon_color=f76a8a" alt="GitHub Stats">
+      </div>
+    </div>
+
+    <div class="section-block" style="animation-delay:0.25s">
+      <div class="block-label">Random Dev Quote</div>
+      <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" style="width:100%;border-radius:10px;" alt="Dev Quote">
+    </div>
+
+    <div class="pv-badge" style="animation-delay:0.3s;text-align:center;margin-top:0.5rem;">
+      <img src="https://komarev.com/ghpvc/?username=rentsu&color=7c6af7&style=flat" alt="Profile Views">
+    </div>
+
+  </div>
+  <footer><p>© 2026 Group 3 Portfolio</p></footer>
+</div>
+
+<script>
+  function toggleTheme() {
+    const root = document.documentElement;
+    root.dataset.theme = root.dataset.theme === 'light' ? '' : 'light';
+  }
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger');
+    if (nav.classList.contains('open')) { nav.classList.remove('open'); btn.classList.remove('open'); }
+    else { nav.classList.add('open'); btn.classList.add('open'); }
+  }
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger');
+    if (!nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open'); btn.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
