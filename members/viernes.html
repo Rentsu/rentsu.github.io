@@ -5,286 +5,149 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viernes, Renz Joseph — Group 3</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0d0d0f; --surface: #161618; --border: #2a2a2e;
-    --accent: #7c6af7; --accent2: #f76a8a; --text: #f0f0f5; --muted: #888899; --card: #1a1a1e;
-  }
-  [data-theme="light"] {
-    --bg: #f5f5fa; --surface: #ffffff; --border: #e0e0ea;
-    --accent: #5a48e8; --accent2: #e8486a; --text: #111118; --muted: #666677; --card: #ffffff;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
-
-  header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2.5rem; height: 64px;
-    background: var(--bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px);
-  }
-  .logo {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    text-decoration: none;
-  }
-  nav { display: flex; gap: 0.25rem; }
-  nav a {
-    background: none; border: none; cursor: pointer;
-    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
-    color: var(--muted); padding: 0.4rem 0.9rem; border-radius: 8px;
-    transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center;
-  }
-  nav a:hover { color: var(--text); background: var(--surface); }
-  .header-right { display: flex; align-items: center; gap: 0.75rem; }
-  .theme-btn {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 0.35rem 0.7rem; cursor: pointer; font-size: 1rem; transition: all 0.2s;
-  }
-  .theme-btn:hover { border-color: var(--accent); }
-
-  .hamburger {
-    display: none; flex-direction: column; justify-content: center; align-items: center;
-    gap: 5px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    padding: 0.45rem 0.6rem; cursor: pointer; transition: border-color 0.2s; width: 40px; height: 38px;
-  }
-  .hamburger:hover { border-color: var(--accent); }
-  .hamburger span { display: block; width: 18px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s ease; }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-nav {
-    display: none; position: fixed; top: 64px; left: 0; right: 0;
-    background: var(--bg); border-bottom: 1px solid var(--border); z-index: 99;
-    padding: 0.75rem 1.5rem 1rem; flex-direction: column; gap: 0.25rem;
-    animation: slideDown 0.2s ease;
-  }
-  .mobile-nav.open { display: flex; }
-  .mobile-nav a {
-    background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
-    font-size: 1rem; font-weight: 500; color: var(--muted); padding: 0.65rem 1rem;
-    border-radius: 10px; text-align: left; transition: all 0.2s; width: 100%; text-decoration: none; display: block;
-  }
-  .mobile-nav a:hover { color: var(--text); background: var(--surface); }
-
-  @keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-  @media (max-width: 600px) { header { padding: 0 1.25rem; } nav { display: none; } .hamburger { display: flex; } }
-
-  /* PROFILE PAGE */
-  .profile-page { padding-top: 64px; min-height: 100vh; }
-
-  .profile-hero {
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    padding: 4rem 2rem 3rem;
-    position: relative; overflow: hidden;
-  }
-  .profile-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 50% 80% at 50% 0%, rgba(124,106,247,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .profile-hero-inner {
-    max-width: 760px; margin: 0 auto;
-    display: flex; align-items: center; gap: 2.5rem;
-    position: relative; z-index: 1;
-    animation: fadeUp 0.6s ease both;
-  }
-  @media(max-width:600px) { .profile-hero-inner { flex-direction: column; text-align: center; } }
-
-  .avatar-wrap {
-    flex-shrink: 0;
-    width: 110px; height: 110px; border-radius: 24px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    padding: 3px;
-  }
-  .avatar-wrap img {
-    width: 100%; height: 100%; border-radius: 21px; object-fit: cover;
-    background: var(--card);
-  }
-  .avatar-wrap .avatar-initials {
-    width: 100%; height: 100%; border-radius: 21px;
-    background: var(--card);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #fff;
-  }
-
-  .profile-meta { flex: 1; }
-  .back-link {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.8rem; color: var(--muted); text-decoration: none;
-    margin-bottom: 1rem; transition: color 0.2s;
-    font-weight: 500; letter-spacing: 0.3px;
-  }
-  .back-link:hover { color: var(--accent); }
-  .profile-role {
-    display: inline-block; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;
-  }
-  .profile-meta h1 {
-    font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem);
-    font-weight: 800; letter-spacing: -1px; line-height: 1.1; margin-bottom: 0.6rem;
-  }
-  .profile-meta .tagline { color: var(--muted); font-size: 1rem; line-height: 1.6; }
-
-  /* CONTENT */
-  .profile-content { max-width: 760px; margin: 0 auto; padding: 3rem 2rem 5rem; }
-
-  .section-block {
-    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-    padding: 2rem; margin-bottom: 1.5rem;
-    animation: fadeUp 0.5s ease both;
-    transition: border-color 0.2s;
-  }
-  .section-block:hover { border-color: rgba(124,106,247,0.3); }
-
-  .block-label {
-    font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--accent); font-weight: 600; margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-  .block-quote {
-    font-style: italic; color: var(--muted); font-size: 1rem;
-    line-height: 1.7; border-left: 3px solid var(--accent); padding-left: 1.2rem;
-  }
-
-  .about-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-  .about-list li { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
-  .about-list li .icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.05rem; }
-
-  .tech-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .tech-badges img { height: 24px; border-radius: 4px; }
-
-  .github-stats { display: flex; flex-direction: column; gap: 1rem; }
-  .github-stats img { width: 100%; border-radius: 10px; }
-
-  .pv-badge img { border-radius: 6px; }
-
-  footer {
-    border-top: 1px solid var(--border); text-align: center;
-    padding: 2rem; color: var(--muted); font-size: 0.85rem;
-  }
-
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  :root{--accent:#7c6af7;--accent2:#f76a8a;--bg-dark:#0d0d0f;--surface-dark:#161618;--border-dark:#2a2a2e;--card-dark:#1a1a1e;--muted-dark:#888899;}
+  body{font-family:'DM Sans',sans-serif;background:#0d0d0f;color:#f0f0f5;transition:background .3s,color .3s;}
+  [data-theme="light"] body{background:#f5f5fa;color:#111118;}
+  .navbar{height:64px;border-bottom:1px solid #2a2a2e;backdrop-filter:blur(12px);background:#0d0d0f!important;}
+  [data-theme="light"] .navbar{background:#fff!important;border-bottom:1px solid #e0e0ea;}
+  .navbar-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.5px;background:linear-gradient(135deg,#7c6af7,#f76a8a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .nav-link{color:#888899!important;font-weight:500;border-radius:8px;padding:.4rem .9rem!important;transition:all .2s;}
+  .nav-link:hover{color:#f0f0f5!important;background:#161618;}
+  [data-theme="light"] .nav-link:hover{color:#111118!important;background:#f5f5fa;}
+  .theme-btn{background:#161618;border:1px solid #2a2a2e;border-radius:8px;padding:.35rem .7rem;cursor:pointer;font-size:1rem;transition:all .2s;color:#f0f0f5;}
+  .theme-btn:hover{border-color:#7c6af7;}
+  [data-theme="light"] .theme-btn{background:#fff;border-color:#e0e0ea;color:#111118;}
+  .profile-hero{background:#0d0d0f;border-bottom:1px solid #2a2a2e;padding:4rem 1.5rem 3rem;position:relative;overflow:hidden;}
+  [data-theme="light"] .profile-hero{background:#f5f5fa;border-bottom:1px solid #e0e0ea;}
+  .profile-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 50% 0%,rgba(124,106,247,.12) 0%,transparent 70%);pointer-events:none;}
+  .avatar-wrap{width:110px;height:110px;border-radius:24px;background:linear-gradient(135deg,#7c6af7,#f76a8a);padding:3px;flex-shrink:0;}
+  .avatar-wrap img{width:100%;height:100%;border-radius:21px;object-fit:cover;background:#1a1a1e;}
+  .avatar-initials{width:100%;height:100%;border-radius:21px;background:#1a1a1e;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff;}
+  .back-link{font-size:.8rem;color:#888899;text-decoration:none;font-weight:500;transition:color .2s;}
+  .back-link:hover{color:#7c6af7;}
+  .profile-role{display:inline-block;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#7c6af7;font-weight:600;margin-bottom:.4rem;}
+  .profile-name{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:.5rem;}
+  .profile-tagline{color:#888899;font-size:1rem;line-height:1.6;}
+  .section-block{background:#1a1a1e;border:1px solid #2a2a2e;border-radius:16px;padding:1.75rem;margin-bottom:1.25rem;transition:border-color .2s;animation:fadeUp .5s ease both;}
+  [data-theme="light"] .section-block{background:#fff;border-color:#e0e0ea;}
+  .section-block:hover{border-color:rgba(124,106,247,.4);}
+  .block-label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:#7c6af7;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+  .block-label::after{content:"";flex:1;height:1px;background:#2a2a2e;}
+  [data-theme="light"] .block-label::after{background:#e0e0ea;}
+  .block-quote{font-style:italic;color:#888899;font-size:1rem;line-height:1.7;border-left:3px solid #7c6af7;padding-left:1.2rem;}
+  .about-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem;}
+  .about-list li{display:flex;align-items:flex-start;gap:.75rem;color:#888899;font-size:.95rem;line-height:1.5;}
+  .tech-badges{display:flex;flex-wrap:wrap;gap:.5rem;}
+  .tech-badges img{height:24px;border-radius:4px;}
+  .github-stats{display:flex;flex-direction:column;gap:1rem;}
+  .github-stats img,.quote-img{width:100%;border-radius:10px;}
+  footer{border-top:1px solid #2a2a2e;text-align:center;padding:2rem;color:#888899;font-size:.85rem;}
+  [data-theme="light"] footer{border-color:#e0e0ea;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
-<header>
-  <a class="logo" href="../index.html">Group 3</a>
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../index.html">About</a>
-    <a href="../index.html">Projects</a>
-    <a href="../index.html">Members</a>
-  </nav>
-  <div class="header-right">
-    <button class="theme-btn" onclick="toggleTheme()">🌙 / ☀️</button>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
-      <span></span><span></span><span></span>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-md fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">Group 3</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="color:#888899;">
+      <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="../index.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="../index.html">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="../index.html">Members</a></li>
+      </ul>
+      <button class="theme-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+    </div>
   </div>
-</header>
+</nav>
 
-<div class="mobile-nav" id="mobile-nav">
-  <a href="../index.html">🏠 Home</a>
-  <a href="../index.html">👥 About</a>
-  <a href="../index.html">🚀 Projects</a>
-  <a href="../index.html">🌟 Members</a>
-</div>
-
-<div class="profile-page">
-  <div class="profile-hero">
-    <div class="profile-hero-inner">
+<!-- HERO -->
+<div class="profile-hero" style="margin-top:64px;">
+  <div class="container">
+    <div class="d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-4" style="animation:fadeUp .6s ease both;">
       <div class="avatar-wrap">
-        <img src="viernes.jpg" alt="Viernes Renz Joseph" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <img src="viernes.jpg" alt="Viernes, Renz Joseph" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
         <div class="avatar-initials" style="display:none;">RV</div>
       </div>
-      <div class="profile-meta">
-        <a class="back-link" href="../index.html">← Back to Members</a>
+      <div class="text-center text-sm-start">
+        <a class="back-link d-inline-block mb-2" href="../index.html">← Back to Members</a>
         <div class="profile-role">⭐ Leader</div>
-        <h1>Viernes, Renz Joseph</h1>
-        <p class="tagline">Full-stack developer focused on Android systems and team leadership.</p>
+        <h1 class="profile-name">Viernes, Renz Joseph</h1>
+        <p class="profile-tagline mb-0">Full-stack developer focused on Android systems and team leadership.</p>
       </div>
     </div>
   </div>
-
-  <div class="profile-content">
-
-    <div class="section-block" style="animation-delay:0.05s">
-      <div class="block-label">About Me</div>
-      <ul class="about-list">
-        <li><span class="icon">🎓</span> Currently pursuing BSIT</li>
-        <li><span class="icon">💻</span> Passionate about coding and problem-solving</li>
-        <li><span class="icon">🌱</span> Always learning new technologies and best practices</li>
-      </ul>
-    </div>
-
-    <div class="section-block" style="animation-delay:0.1s">
-      <div class="block-label">Favorite Quote</div>
-      <p class="block-quote">"Ang taong matiyaga, ay masipag"</p>
-    </div>
-
-    <div class="section-block" style="animation-delay:0.15s">
-      <div class="block-label">Tech Stack</div>
-      <div class="tech-badges">
-        <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++">
-        <img src="https://img.shields.io/badge/VB.NET-512BD4?style=flat&logo=dotnet&logoColor=white" alt="VB.NET">
-        <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML">
-        <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub">
-        <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code">
-      </div>
-    </div>
-
-    <div class="section-block" style="animation-delay:0.2s">
-      <div class="block-label">GitHub Stats</div>
-      <div class="github-stats">
-        <img src="https://streak-stats.demolab.com?user=rentsu&theme=dark&ring=7c6af7&fire=f76a8a&currStreakLabel=7c6af7&hide_border=true&background=1a1a1e&stroke=2a2a2e" alt="Streak Stats">
-        <img src="https://github-readme-stats.vercel.app/api?username=rentsu&show_icons=true&theme=dark&hide_border=true&bg_color=1a1a1e&title_color=7c6af7&icon_color=f76a8a" alt="GitHub Stats">
-      </div>
-    </div>
-
-    <div class="section-block" style="animation-delay:0.25s">
-      <div class="block-label">Random Dev Quote</div>
-      <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" style="width:100%;border-radius:10px;" alt="Dev Quote">
-    </div>
-
-    <div class="pv-badge" style="animation-delay:0.3s;text-align:center;margin-top:0.5rem;">
-      <img src="https://komarev.com/ghpvc/?username=rentsu&color=7c6af7&style=flat" alt="Profile Views">
-    </div>
-
-  </div>
-  <footer><p>© 2026 Group 3 Portfolio</p></footer>
 </div>
 
+<!-- CONTENT -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="section-block" style="animation-delay:.05s">
+        <div class="block-label">About Me</div>
+        <ul class="about-list">
+          <li><span>🎓</span> Currently pursuing BSIT</li>
+            <li><span>💻</span> Passionate about coding and problem-solving</li>
+            <li><span>🌱</span> Always learning new technologies and best practices</li>
+        </ul>
+      </div>
+
+      <div class="section-block" style="animation-delay:.1s">
+        <div class="block-label">Favorite Quote</div>
+        <p class="block-quote mb-0">Ang taong matiyaga, ay masipag</p>
+      </div>
+
+      <div class="section-block" style="animation-delay:.15s">
+        <div class="block-label">Tech Stack</div>
+        <div class="tech-badges">
+          <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++">
+            <img src="https://img.shields.io/badge/VB.NET-512BD4?style=flat&logo=dotnet&logoColor=white" alt="VB.NET">
+            <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML">
+            <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS">
+            <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub">
+            <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code">
+        </div>
+      </div>
+
+      <div class="section-block" style="animation-delay:.2s">
+        <div class="block-label">GitHub Stats</div>
+        <div class="github-stats">
+          <img src="https://streak-stats.demolab.com?user=rentsu&theme=dark&ring=7c6af7&fire=f76a8a&currStreakLabel=7c6af7&hide_border=true&background=1a1a1e&stroke=2a2a2e" alt="Streak">
+            <img src="https://github-readme-stats.vercel.app/api?username=rentsu&show_icons=true&theme=dark&hide_border=true&bg_color=1a1a1e&title_color=7c6af7&icon_color=f76a8a" alt="GitHub Stats">
+        </div>
+      </div>
+
+      <div class="section-block" style="animation-delay:.25s">
+        <div class="block-label">Random Dev Quote</div>
+        <img class="quote-img" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Dev Quote">
+      </div>
+
+      <div class="text-center mt-3">
+        <img src="https://komarev.com/ghpvc/?username=rentsu&color=7c6af7&style=flat" alt="Profile Views">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="mb-0">© 2026 Group 3 Portfolio</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-  function toggleTheme() {
-    const root = document.documentElement;
-    root.dataset.theme = root.dataset.theme === 'light' ? '' : 'light';
-  }
-  function toggleMobileNav() {
-    const nav = document.getElementById('mobile-nav');
-    const btn = document.getElementById('hamburger');
-    if (nav.classList.contains('open')) { nav.classList.remove('open'); btn.classList.remove('open'); }
-    else { nav.classList.add('open'); btn.classList.add('open'); }
-  }
-  document.addEventListener('click', function(e) {
-    const nav = document.getElementById('mobile-nav');
-    const btn = document.getElementById('hamburger');
-    if (!nav.contains(e.target) && !btn.contains(e.target)) {
-      nav.classList.remove('open'); btn.classList.remove('open');
-    }
-  });
+  function toggleTheme(){const r=document.documentElement;r.dataset.theme=r.dataset.theme==="light"?"":"light";}
 </script>
+
 </body>
 </html>
