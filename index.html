@@ -28,9 +28,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
@@ -58,7 +56,12 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  nav { display: flex; gap: 0.25rem; }
+
+  /* Desktop nav */
+  nav {
+    display: flex;
+    gap: 0.25rem;
+  }
   nav button {
     background: none; border: none; cursor: pointer;
     font-family: 'DM Sans', sans-serif;
@@ -71,6 +74,12 @@
   nav button:hover { color: var(--text); background: var(--surface); }
   nav button.active { color: var(--text); background: var(--surface); }
 
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   .theme-btn {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -81,6 +90,76 @@
     transition: all 0.2s;
   }
   .theme-btn:hover { border-color: var(--accent); }
+
+  /* Hamburger button */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.45rem 0.6rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    width: 40px;
+    height: 38px;
+  }
+  .hamburger:hover { border-color: var(--accent); }
+  .hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile dropdown nav */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    padding: 0.75rem 1.5rem 1rem;
+    flex-direction: column;
+    gap: 0.25rem;
+    animation: slideDown 0.2s ease;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav button {
+    background: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 500;
+    color: var(--muted);
+    padding: 0.65rem 1rem;
+    border-radius: 10px;
+    text-align: left;
+    transition: all 0.2s;
+    width: 100%;
+  }
+  .mobile-nav button:hover { color: var(--text); background: var(--surface); }
+  .mobile-nav button.active { color: var(--text); background: var(--surface); }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 600px) {
+    header { padding: 0 1.25rem; }
+    nav { display: none; }
+    .hamburger { display: flex; }
+  }
 
   /* PAGES */
   .page { display: none; padding-top: 64px; min-height: 100vh; }
@@ -313,14 +392,30 @@
 <!-- NAV -->
 <header>
   <div class="logo">Group 3</div>
+
+  <!-- Desktop nav -->
   <nav>
     <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
     <button onclick="showPage('about')" id="nav-about">About</button>
     <button onclick="showPage('projects')" id="nav-projects">Projects</button>
     <button onclick="showPage('members')" id="nav-members">Members</button>
   </nav>
-  <button class="theme-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+
+  <div class="header-right">
+    <button class="theme-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile dropdown nav -->
+<div class="mobile-nav" id="mobile-nav">
+  <button onclick="showPage('home')" id="mnav-home" class="active">🏠 Home</button>
+  <button onclick="showPage('about')" id="mnav-about">👥 About</button>
+  <button onclick="showPage('projects')" id="mnav-projects">🚀 Projects</button>
+  <button onclick="showPage('members')" id="mnav-members">🌟 Members</button>
+</div>
 
 <!-- HOME PAGE -->
 <div id="page-home" class="page active">
@@ -381,7 +476,7 @@
       </div>
     </div>
   </div>
-  <footer><p>© 2026 Group 3 Portfolio </p></footer>
+  <footer><p>© 2026 Group 3 Portfolio</p></footer>
 </div>
 
 <!-- PROJECTS PAGE -->
@@ -486,15 +581,22 @@
 
     </div>
   </div>
-  <footer><p>© 2026 Group 3 Portfolio  🚀</p></footer>
+  <footer><p>© 2026 Group 3 Portfolio 🚀</p></footer>
 </div>
 
 <script>
   function showPage(name) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.mobile-nav button').forEach(b => b.classList.remove('active'));
+
     document.getElementById('page-' + name).classList.add('active');
     document.getElementById('nav-' + name).classList.add('active');
+    document.getElementById('mnav-' + name).classList.add('active');
+
+    // Close mobile nav
+    closeMobileNav();
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Re-trigger animations
@@ -510,6 +612,32 @@
     const root = document.documentElement;
     root.dataset.theme = root.dataset.theme === 'light' ? '' : 'light';
   }
+
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger');
+    const isOpen = nav.classList.contains('open');
+    if (isOpen) {
+      closeMobileNav();
+    } else {
+      nav.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+
+  function closeMobileNav() {
+    document.getElementById('mobile-nav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  // Close mobile nav when clicking outside
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger');
+    if (!nav.contains(e.target) && !btn.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
 </script>
 </body>
 </html>
