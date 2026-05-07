@@ -5,56 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dela Cruz, Terrence — Group 3</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-  :root{--accent:#7c6af7;--accent2:#f76a8a;--bg-dark:#0d0d0f;--surface-dark:#161618;--border-dark:#2a2a2e;--card-dark:#1a1a1e;--muted-dark:#888899;}
-  body{font-family:'DM Sans',sans-serif;background:#0d0d0f;color:#f0f0f5;transition:background .3s,color .3s;}
-  [data-theme="light"] body{background:#f5f5fa;color:#111118;}
-  .navbar{height:64px;border-bottom:1px solid #2a2a2e;backdrop-filter:blur(12px);background:#0d0d0f!important;}
-  [data-theme="light"] .navbar{background:#fff!important;border-bottom:1px solid #e0e0ea;}
-  .navbar-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.5px;background:linear-gradient(135deg,#7c6af7,#f76a8a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-  .nav-link{color:#888899!important;font-weight:500;border-radius:8px;padding:.4rem .9rem!important;transition:all .2s;}
-  .nav-link:hover{color:#f0f0f5!important;background:#161618;}
-  [data-theme="light"] .nav-link:hover{color:#111118!important;background:#f5f5fa;}
-  .theme-btn{background:#161618;border:1px solid #2a2a2e;border-radius:8px;padding:.35rem .7rem;cursor:pointer;font-size:1rem;transition:all .2s;color:#f0f0f5;}
-  .theme-btn:hover{border-color:#7c6af7;}
-  [data-theme="light"] .theme-btn{background:#fff;border-color:#e0e0ea;color:#111118;}
-  .profile-hero{background:#0d0d0f;border-bottom:1px solid #2a2a2e;padding:4rem 1.5rem 3rem;position:relative;overflow:hidden;}
-  [data-theme="light"] .profile-hero{background:#f5f5fa;border-bottom:1px solid #e0e0ea;}
-  .profile-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 50% 0%,rgba(124,106,247,.12) 0%,transparent 70%);pointer-events:none;}
-  .avatar-wrap{width:110px;height:110px;border-radius:24px;background:linear-gradient(135deg,#7c6af7,#f76a8a);padding:3px;flex-shrink:0;}
-  .avatar-wrap img{width:100%;height:100%;border-radius:21px;object-fit:cover;background:#1a1a1e;}
-  .avatar-initials{width:100%;height:100%;border-radius:21px;background:#1a1a1e;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff;}
-  .back-link{font-size:.8rem;color:#888899;text-decoration:none;font-weight:500;transition:color .2s;}
-  .back-link:hover{color:#7c6af7;}
-  .profile-role{display:inline-block;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:#7c6af7;font-weight:600;margin-bottom:.4rem;}
-  .profile-name{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:.5rem;}
-  .profile-tagline{color:#888899;font-size:1rem;line-height:1.6;}
-  .section-block{background:#1a1a1e;border:1px solid #2a2a2e;border-radius:16px;padding:1.75rem;margin-bottom:1.25rem;transition:border-color .2s;animation:fadeUp .5s ease both;}
-  [data-theme="light"] .section-block{background:#fff;border-color:#e0e0ea;}
-  .section-block:hover{border-color:rgba(124,106,247,.4);}
-  .block-label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:#7c6af7;font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
-  .block-label::after{content:"";flex:1;height:1px;background:#2a2a2e;}
-  [data-theme="light"] .block-label::after{background:#e0e0ea;}
-  .block-quote{font-style:italic;color:#888899;font-size:1rem;line-height:1.7;border-left:3px solid #7c6af7;padding-left:1.2rem;}
-  .about-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem;}
-  .about-list li{display:flex;align-items:flex-start;gap:.75rem;color:#888899;font-size:.95rem;line-height:1.5;}
-  .tech-badges{display:flex;flex-wrap:wrap;gap:.5rem;}
-  .tech-badges img{height:24px;border-radius:4px;}
-  .github-stats{display:flex;flex-direction:column;gap:1rem;}
-  .github-stats img,.quote-img{width:100%;border-radius:10px;}
-  footer{border-top:1px solid #2a2a2e;text-align:center;padding:2rem;color:#888899;font-size:.85rem;}
-  [data-theme="light"] footer{border-color:#e0e0ea;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  :root { --accent: #7c6af7; --accent2: #f76a8a; }
+
+  body { font-family: 'DM Sans', sans-serif; background-color: #0d0d0f; color: #f0f0f5; transition: background .3s, color .3s; }
+  [data-theme="light"] body { background-color: #f5f5fa; color: #111118; }
+
+  /* NAVBAR */
+  .navbar { background-color: #0d0d0f !important; border-bottom: 1px solid #2a2a2e; }
+  [data-theme="light"] .navbar { background-color: #ffffff !important; border-bottom: 1px solid #e0e0ea; }
+  .navbar-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; background: linear-gradient(135deg, #7c6af7, #f76a8a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .navbar-nav .nav-link { color: #888899 !important; font-weight: 500; border-radius: 8px; }
+  .navbar-nav .nav-link:hover { color: #f0f0f5 !important; background-color: #161618; }
+  [data-theme="light"] .navbar-nav .nav-link:hover { color: #111118 !important; background-color: #f0f0f5; }
+  .navbar-toggler { border-color: #2a2a2e !important; }
+  .navbar-toggler-icon { filter: invert(1); }
+  [data-theme="light"] .navbar-toggler-icon { filter: none; }
+
+  /* THEME BTN */
+  .theme-btn { background-color: #161618; border: 1px solid #2a2a2e; color: #f0f0f5; border-radius: 8px; padding: .35rem .7rem; cursor: pointer; font-size: 1rem; }
+  .theme-btn:hover { border-color: #7c6af7; }
+  [data-theme="light"] .theme-btn { background-color: #fff; border-color: #e0e0ea; color: #111118; }
+
+  /* HERO */
+  .profile-hero { background-color: #0d0d0f; border-bottom: 1px solid #2a2a2e; padding: 4rem 0 3rem; position: relative; overflow: hidden; }
+  [data-theme="light"] .profile-hero { background-color: #f5f5fa; border-bottom: 1px solid #e0e0ea; }
+  .profile-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 50% 0%, rgba(124,106,247,.12) 0%, transparent 70%); pointer-events: none; }
+
+  /* AVATAR */
+  .avatar-wrap { width: 110px; height: 110px; border-radius: 24px; background: linear-gradient(135deg, #7c6af7, #f76a8a); padding: 3px; flex-shrink: 0; }
+  .avatar-wrap img { width: 100%; height: 100%; border-radius: 21px; object-fit: cover; background: #1a1a1e; display: block; }
+  .avatar-initials { width: 100%; height: 100%; border-radius: 21px; background: #1a1a1e; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: #fff; }
+
+  /* PROFILE TEXT */
+  .back-link { font-size: .8rem; color: #888899; text-decoration: none; font-weight: 500; }
+  .back-link:hover { color: #7c6af7; }
+  .profile-role { font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; color: #7c6af7; font-weight: 600; }
+  .profile-name { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+  .profile-tagline { color: #888899; font-size: 1rem; }
+
+  /* CARDS — Bootstrap .card overrides */
+  .card { background-color: #1a1a1e !important; border: 1px solid #2a2a2e !important; border-radius: 16px !important; transition: border-color .2s; animation: fadeUp .5s ease both; }
+  [data-theme="light"] .card { background-color: #ffffff !important; border-color: #e0e0ea !important; }
+  .card:hover { border-color: rgba(124,106,247,.4) !important; }
+  .card-body { padding: 1.75rem; }
+
+  /* BLOCK LABEL */
+  .block-label { font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; color: #7c6af7; font-weight: 600; display: flex; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: #2a2a2e; }
+  [data-theme="light"] .block-label::after { background: #e0e0ea; }
+
+  /* QUOTE */
+  .block-quote { font-style: italic; color: #888899; font-size: 1rem; line-height: 1.7; border-left: 3px solid #7c6af7; padding-left: 1.2rem; margin: 0; }
+
+  /* ABOUT LIST */
+  .about-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+  .about-list li { display: flex; align-items: flex-start; gap: .75rem; color: #888899; font-size: .95rem; line-height: 1.5; }
+  [data-theme="light"] .about-list li { color: #666677; }
+
+  /* BADGES */
+  .tech-badges { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tech-badges img { height: 24px; border-radius: 4px; }
+
+  /* GITHUB */
+  .github-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .github-stats img, .quote-img { width: 100%; border-radius: 10px; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid #2a2a2e; text-align: center; padding: 2rem; color: #888899; font-size: .85rem; }
+  [data-theme="light"] footer { border-color: #e0e0ea; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- Bootstrap Navbar -->
 <nav class="navbar navbar-expand-md fixed-top">
   <div class="container">
     <a class="navbar-brand" href="../index.html">Group 3</a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="color:#888899;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
@@ -69,68 +101,84 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="profile-hero" style="margin-top:64px;">
+<!-- Hero Section -->
+<div class="profile-hero" style="margin-top: 64px;">
   <div class="container">
-    <div class="d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-4" style="animation:fadeUp .6s ease both;">
+    <div class="d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-4" style="animation: fadeUp .6s ease both; position: relative; z-index: 1;">
       <div class="avatar-wrap">
-        <img src="delacruz.jpg" alt="Dela Cruz, Terrence" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="avatar-initials" style="display:none;">TD</div>
+        <img src="delacruz.jpg" alt="Dela Cruz, Terrence" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="avatar-initials" style="display: none;">TD</div>
       </div>
       <div class="text-center text-sm-start">
         <a class="back-link d-inline-block mb-2" href="../index.html">← Back to Members</a>
-        <div class="profile-role">QA & Testing</div>
-        <h1 class="profile-name">Dela Cruz, Terrence</h1>
+        <div class="profile-role mb-1">QA & Testing</div>
+        <h1 class="profile-name mb-2">Dela Cruz, Terrence</h1>
         <p class="profile-tagline mb-0">Quality assurance specialist focused on testing and debugging systems.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CONTENT -->
+<!-- Main Content — Bootstrap grid -->
 <div class="container py-5">
   <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-12 col-lg-8">
 
-      <div class="section-block" style="animation-delay:.05s">
-        <div class="block-label">About Me</div>
-        <ul class="about-list">
-          <li><span>🎓</span> Currently pursuing a Bachelor of Science in Information Technology (BSIT)</li>
+      <!-- About Me -->
+      <div class="card mb-3" style="animation-delay: .05s">
+        <div class="card-body">
+          <div class="block-label">About Me</div>
+          <ul class="about-list">
+            <li><span>🎓</span> Currently pursuing a Bachelor of Science in Information Technology (BSIT)</li>
             <li><span>💻</span> Passionate about coding and problem-solving</li>
             <li><span>🌱</span> Always learning new technologies and best practices</li>
-        </ul>
+          </ul>
+        </div>
       </div>
 
-      <div class="section-block" style="animation-delay:.1s">
-        <div class="block-label">Favorite Quote</div>
-        <p class="block-quote mb-0">The only way to do great work is to love what you do. — Steve Jobs</p>
+      <!-- Quote -->
+      <div class="card mb-3" style="animation-delay: .1s">
+        <div class="card-body">
+          <div class="block-label">Favorite Quote</div>
+          <p class="block-quote">The only way to do great work is to love what you do. — Steve Jobs</p>
+        </div>
       </div>
 
-      <div class="section-block" style="animation-delay:.15s">
-        <div class="block-label">Tech Stack</div>
-        <div class="tech-badges">
-          <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++">
+      <!-- Tech Stack -->
+      <div class="card mb-3" style="animation-delay: .15s">
+        <div class="card-body">
+          <div class="block-label">Tech Stack</div>
+          <div class="tech-badges">
+            <img src="https://img.shields.io/badge/C++-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++">
             <img src="https://img.shields.io/badge/VB.NET-512BD4?style=flat&logo=dotnet&logoColor=white" alt="VB.NET">
             <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML">
             <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS">
             <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub">
             <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code">
+          </div>
         </div>
       </div>
 
-      <div class="section-block" style="animation-delay:.2s">
-        <div class="block-label">GitHub Stats</div>
-        <div class="github-stats">
-          <img src="https://streak-stats.demolab.com?user=terrenceacuz&theme=dark&ring=7c6af7&fire=f76a8a&currStreakLabel=7c6af7&hide_border=true&background=1a1a1e&stroke=2a2a2e" alt="Streak">
+      <!-- GitHub Stats -->
+      <div class="card mb-3" style="animation-delay: .2s">
+        <div class="card-body">
+          <div class="block-label">GitHub Stats</div>
+          <div class="github-stats">
+            <img src="https://streak-stats.demolab.com?user=terrenceacuz&theme=dark&ring=7c6af7&fire=f76a8a&currStreakLabel=7c6af7&hide_border=true&background=1a1a1e&stroke=2a2a2e" alt="Streak Stats">
             <img src="https://github-readme-stats.vercel.app/api?username=terrenceacuz&show_icons=true&theme=dark&hide_border=true&bg_color=1a1a1e&title_color=7c6af7&icon_color=f76a8a" alt="GitHub Stats">
+          </div>
         </div>
       </div>
 
-      <div class="section-block" style="animation-delay:.25s">
-        <div class="block-label">Random Dev Quote</div>
-        <img class="quote-img" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Dev Quote">
+      <!-- Dev Quote -->
+      <div class="card mb-3" style="animation-delay: .25s">
+        <div class="card-body">
+          <div class="block-label">Random Dev Quote</div>
+          <img class="quote-img" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Dev Quote">
+        </div>
       </div>
 
+      <!-- Profile Views -->
       <div class="text-center mt-3">
         <img src="https://komarev.com/ghpvc/?username=terrenceacuz&color=7c6af7&style=flat" alt="Profile Views">
       </div>
@@ -143,11 +191,13 @@
   <p class="mb-0">© 2026 Group 3 Portfolio</p>
 </footer>
 
+<!-- Bootstrap 5 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-  function toggleTheme(){const r=document.documentElement;r.dataset.theme=r.dataset.theme==="light"?"":"light";}
+  function toggleTheme() {
+    const r = document.documentElement;
+    r.dataset.theme = r.dataset.theme === 'light' ? '' : 'light';
+  }
 </script>
-
 </body>
 </html>
